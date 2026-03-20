@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARTJON DESIGN - Minecraft Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <span class="toggle-icon">🌙</span>
+        </div>
+        <div class="header-content">
+            <h1 class="logo">BARTJON DESIGN</h1>
+            <p class="tagline">Professional Minecraft Design Studio</p>
+            <nav class="nav">
+                <button class="nav-btn" onclick="navigate('home')">HOME</button>
+                <button class="nav-btn" onclick="navigate('portfolio')">PORTFOLIO</button>
+                <button class="nav-btn" onclick="navigate('order')">ORDER</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Welcome to BARTJON DESIGN</h2>
+                    <p class="hero-description fancy-text">
+                        𝓣𝓱𝓮 𝔀𝓸𝓻𝓻𝓲𝓮𝓼, 𝓸𝓯 𝓵𝓲𝓯𝓮 𝔀𝓲𝓵𝓵 𝓹𝓪𝓼𝓽 𝓫𝓾𝓽 𝔂𝓸𝓾 .
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature">✦ Custom Avatarkalar</div>
+                        <div class="feature">✦ Professional Bannerlar</div>
+                        <div class="feature">✦ Sifatli Prevyular</div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@bartjon1?si=o_-12xgFSo6QBQHO" target="_blank" class="social-btn youtube" title="YouTube">
+                            <img src="Icons8/icons8-youtube-50.png" alt="YouTube" class="social-icon">
+                            <span class="social-text">YOUTUBE</span>
+                        </a>
+                        <a href="https://discord.gg/" target="_blank" class="social-btn discord" title="Discord: @bartjon_41229" onclick="copyToClipboard('bartjon_41229', event)">
+                            <img src="Icons8/icons8-discord-50.png" alt="Discord" class="social-icon">
+                            <span class="social-text">DISCORD</span>
+                        </a>
+                        <a href="https://t.me/VECTORJON" target="_blank" class="social-btn telegram" title="Telegram">
+                            <img src="Icons8/icons8-telegram-app-50.png" alt="Telegram" class="social-icon">
+                            <span class="social-text">TELEGRAM</span>
+                        </a>
+                        <a href="https://www.instagram.com/berdkhmurodoff?igsh=MWtmMGhycXV0eno5eQ==" target="_blank" class="social-btn instagram" title="Instagram">
+                            <img src="Icons8/icons8-instagram-50.png" alt="Instagram" class="social-icon">
+                            <span class="social-text">INSTAGRAM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2 class="section-title">OUR PORTFOLIO</h2>
+                <p class="section-subtitle">Explore Our Latest Minecraft Designs</p>
+                <div class="gallery" id="gallery"></div>
+            </div>
+        </section>
+
+        <!-- Order Section -->
+        <section id="order" class="section">
+            <div class="container">
+                <h2 class="section-title">BUYIRTMA</h2>
+                <p class="section-subtitle">Buyirma Berish Uchun Royxatdan Oting</p>
+
+                <!-- Design Type Selection -->
+                <div class="order-grid">
+                    <button class="order-btn" data-type="BANNER" onclick="selectOrderType('BANNER')">
+                        <span class="order-icon">🎨</span>
+                        <span class="order-text">BANNER</span>
+                    </button>
+                    <button class="order-btn" data-type="AVATARKA" onclick="selectOrderType('AVATARKA')">
+                        <span class="order-icon">👤</span>
+                        <span class="order-text">AVATARKA</span>
+                    </button>
+                    <button class="order-btn" data-type="PREVYU" onclick="selectOrderType('PREVYU')">
+                        <span class="order-icon">📺</span>
+                        <span class="order-text">PREVYU</span>
+                    </button>
+                </div>
+
+                <!-- Order Form -->
+                <div class="order-form-wrapper">
+                    <div class="method-toggle">
+                        <button class="toggle-btn active" onclick="selectMethod('IDEA')">💡 IDEA MATN</button>
+                        <button class="toggle-btn" onclick="selectMethod('RASM')">🖼️ RASM</button>
+                    </div>
+
+                    <form id="orderForm" class="order-form">
+                        <!-- Idea Text Form -->
+                        <div id="ideaSection" class="form-section active">
+                            <label for="ideaText">Your Design Idea:</label>
+                            <textarea id="ideaText" placeholder="Describe your design idea in detail..." rows="6"></textarea>
+                        </div>
+
+                        <!-- Image Upload Form -->
+                        <div id="rasmSection" class="form-section hidden">
+                            <label for="rasmFile">Upload Your Design Image:</label>
+                            <div class="file-upload">
+                                <input type="file" id="rasmFile" accept="image/*" onchange="handleImagePreview(this)">
+                                <img id="imagePreview" class="preview-img hidden" alt="Preview">
+                            </div>
+                        </div>
+
+                        <!-- Telegram Username -->
+                        <div class="form-group">
+                            <label for="telegramHandle">Your Telegram Username:</label>
+                            <input type="text" id="telegramHandle" placeholder="@username (without @)" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="button" class="submit-btn" onclick="submitOrder()">SEND ORDER</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Enlarged">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        </div>
+    </div>
+
+    <!-- Status Message -->
+    <div id="statusMessage" class="status-message"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
